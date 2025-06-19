@@ -185,4 +185,18 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
+.filter{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+}
 
+.btn{
+	height: 40px;
+	width: 50px;
+}
+.btn:hover {
+	background-color: #b13c4c;
+
+}
