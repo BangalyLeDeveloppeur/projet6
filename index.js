@@ -2,6 +2,7 @@
 const gallery = document.querySelector("main");
 const gallerySection = document.querySelector(".gallery");
 const filter = document.querySelector(".filter");
+console.log(filter)
 
 console.log(gallerySection);
 /// fonction init ///////////////////////////////////////////////////////
@@ -27,11 +28,14 @@ async function GetCategories() {
 async function createBouton() {
   const dataCategori = await GetCategories();
   console.log(dataCategori);
+
+
   dataCategori.forEach((category) => {
-    const btn = document.createElement("bouton");
+    const btn = document.createElement("button");
     btn.textContent = category.name;
     btn.id = category.id;
     filter.appendChild(btn);
+    
   });
 }
 
