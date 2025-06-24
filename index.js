@@ -1,16 +1,21 @@
 const gallerySection = document.querySelector(".gallery");
 const filter = document.querySelector(".filter");
 
+
+///recuperer les travaux ////
 async function GetWorks() {
   const response = await fetch("http://localhost:5678/api/works");
   return await response.json();
 }
 
+
+/////les categories ///
 async function GetCategories() {
   const response = await fetch("http://localhost:5678/api/categories");
   return await response.json();
 }
 
+// Afficharge des bouton dynamiquement /////
 async function createBouton() {
   const dataCategori = await GetCategories();
 
@@ -27,7 +32,7 @@ async function createBouton() {
     filter.appendChild(btn);
   });
 }
-
+///////afficharge des travaux ////////*
 async function afficherTravaux(travaux = null) {
   gallerySection.innerHTML = "";
   if (!travaux) {
@@ -47,9 +52,10 @@ async function afficherTravaux(travaux = null) {
     gallerySection.appendChild(figure);
   });
 }
-
+////// function pour filtre ////
 async function filtrageTravaux() {
   const Trav = await GetWorks();
+  console.log(Trav)
 
   const AllButton = document.querySelectorAll(".filter button");
   AllButton.forEach((catego) => {
