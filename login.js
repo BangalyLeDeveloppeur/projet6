@@ -28,21 +28,24 @@ async function login() {
     e.preventDefault();
     const userEmail = email.value;
     const userPassword = motPasse.value;
+    try {
+      const userData = await PostUser({
+        email: userEmail,
+        password: userPassword,
+      });
+      console.log(userData);
 
-    const userData = await PostUser({
-      email: userEmail,
-      password: userPassword,
-    });
-    console.log(userData);
+      if (userData && userData.token) {
+        console.log(userData.token);
+        window.localStorage.setItem("authantoken", userData.token);
+        window.sessionStorage.setItem("logged", "true");
 
-    if (userData && userData.token) {
-      console.log(userData.token);
-      window.localStorage.setItem("authantoken", userData.token);
-      window.sessionStorage.setItem("logged", "true");
-      window.location.href = "./FrontEnd/index.html";
-      console.log("vous etes connecté !");
-    } else {
-      console.log("Votre email ou votre mot de passe est incorrect !");
+        console.log("vous etes connecté !");
+      } else {
+        console.log("Votre email ou votre mot de passe est incorrect !");
+      }
+    } catch (Error) {
+      console.log("message Error:", Error.message);
     }
   });
 }
