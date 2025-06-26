@@ -1,11 +1,13 @@
 // Ciblage des éléments du DOM
-const loginBtn = document.querySelector(".login");
+const loginBtn = document.querySelector(".loginbtn");
 const email = document.querySelector("#email");
 console.log(email);
 const motPasse = document.querySelector("#password");
 const form = document.querySelector("form");
 console.log(form);
 const messageErreur = document.querySelector(".message-erreur");
+
+console.log(loginBtn);
 
 // Fonction pour envoyer la requête POST à l'API
 async function PostUser(user) {
@@ -38,14 +40,15 @@ async function login() {
       if (userData && userData.token) {
         console.log(userData.token);
         window.localStorage.setItem("authantoken", userData.token);
-        window.sessionStorage.setItem("logged", "true");
-
+        window.sessionStorage.setItem.loged = true;
+        window.location.href = "./FrontEnd/index.html";
         console.log("vous etes connecté !");
       } else {
         console.log("Votre email ou votre mot de passe est incorrect !");
       }
     } catch (Error) {
       console.log("message Error:", Error.message);
+      window.sessionStorage.setItem("logged", "false");
     }
   });
 }

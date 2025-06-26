@@ -1,13 +1,13 @@
 const gallerySection = document.querySelector(".gallery");
 const filter = document.querySelector(".filter");
-
+const loginBtn = document.querySelector(".btnlogin");
+console.log(loginBtn);
 
 ///recuperer les travaux ////
 async function GetWorks() {
   const response = await fetch("http://localhost:5678/api/works");
   return await response.json();
 }
-
 
 /////les categories ///
 async function GetCategories() {
@@ -55,7 +55,7 @@ async function afficherTravaux(travaux = null) {
 ////// function pour filtre ////
 async function filtrageTravaux() {
   const Trav = await GetWorks();
-  console.log(Trav)
+  console.log(Trav);
 
   const AllButton = document.querySelectorAll(".filter button");
   AllButton.forEach((catego) => {
@@ -71,6 +71,27 @@ async function filtrageTravaux() {
     });
   });
 }
+///// fonction pour gerer le button de déconnexion ////////
+
+const loggged = (window.sessionStorage.setItem.loged = true);
+
+function Logout() {
+  if (loggged) {
+    loginBtn.textContent = "Logout";
+  } else {
+    loginBtn.textContent = "Login";
+  }
+  loginBtn.addEventListener("click", (e) => {
+    window.sessionStorage.setItem.loged = false;
+    loginBtn.textContent = "Login";
+    console.log("Deconnexion en cour!");
+    
+  });
+}
+Logout();
+
+console.log(loggged);
+
 ///fonction pour afficher les differentes fonction///////////////////////////
 async function init() {
   await createBouton();
