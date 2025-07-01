@@ -1,7 +1,7 @@
 const gallerySection = document.querySelector(".gallery");
 const filter = document.querySelector(".filter");
 const loginBtn = document.querySelector(".btnlogin");
-console.log(loginBtn);
+
 
 ///recuperer les travaux ////
 async function GetWorks() {
@@ -74,12 +74,16 @@ async function filtrageTravaux() {
 ///// fonction pour gerer le button de déconnexion ////////
 
 const loggged = (window.sessionStorage.setItem.loged = true);
+const modifBtn = document.querySelector(".porte-modif");
+console.log(modifBtn);
 
 function Logout() {
   if (loggged) {
     loginBtn.textContent = "Logout";
+    modifBtn.style.display= "inline"
   } else {
     loginBtn.textContent = "Login";
+    modifBtn.style.display= "non"
   }
   loginBtn.addEventListener("click", (e) => {
     window.sessionStorage.setItem.loged = false;
